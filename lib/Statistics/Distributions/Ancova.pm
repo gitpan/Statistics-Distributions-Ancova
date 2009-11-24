@@ -12,7 +12,7 @@ use Statistics::Distributions qw( fprob fdistr);
 #use vars qw($VERSION);
 
 #use version; $VERSION = qv('0.0.3');
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
     #my ($class, $significance ) = @_;
@@ -741,7 +741,7 @@ __END__
 
 =head1 NAME
 
-Statistics::Distributions::Ancova - [Perl implementation of One-Way Analysis of Covariance for Independent Samples]
+Statistics::Distributions::Ancova - Perl implementation of One-Way Analysis of Covariance for Independent Samples.
 
 =head1 VERSION
 
@@ -835,9 +835,6 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
     
     See http://en.wikipedia.org/wiki/Analysis_of_covariance for more info.
 
-=head1 CONFIGURATION AND ENVIRONMENT
-
-Statistics::Distributions::Ancova requires no configuration files or environment variables.
 
 =head1 DEPENDENCIES
 
@@ -850,7 +847,7 @@ Statistics::Distributions::Ancova requires no configuration files or environment
 
 =head1 AUTHOR
 
-Daniel S. T. Hughes  C<< <dsth@cantab.net> >>
+Daniel S. T. Hughes  <dsth@cpan.org>
 
 =head1 LICENCE AND COPYRIGHT
 
@@ -858,6 +855,10 @@ Copyright (c) 2009, Daniel S. T. Hughes C<< <dsth@cantab.net> >>. All rights res
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=head1 SEE ALSO
+
+L<Statistics::Descriptive>, L<Statistics::Distributions>
 
 =head1 DISCLAIMER OF WARRANTY
 
@@ -882,3 +883,4 @@ FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
 SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGES.
 
+=cut
