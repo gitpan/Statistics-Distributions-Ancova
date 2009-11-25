@@ -12,7 +12,7 @@ use Statistics::Distributions qw( fprob fdistr);
 #use vars qw($VERSION);
 
 #use version; $VERSION = qv('0.0.3');
-our $VERSION = '0.0.3';
+our $VERSION = '0.03';
 
 sub new {
     #my ($class, $significance ) = @_;
