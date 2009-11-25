@@ -12,7 +12,7 @@ use Statistics::Distributions qw( fprob fdistr);
 #use vars qw($VERSION);
 
 #use version; $VERSION = qv('0.0.3');
-our $VERSION = '0.03';
+our $VERSION = '0.03.01';
 
 sub new {
     #my ($class, $significance ) = @_;
@@ -745,7 +745,7 @@ Statistics::Distributions::Ancova - Perl implementation of One-Way Analysis of C
 
 =head1 VERSION
 
-This document describes Statistics::Distributions::Ancova version 0.0.1
+This document describes Statistics::Distributions::Ancova version 0.03.01
 
 =head1 SYNOPSIS
 
@@ -759,10 +759,12 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
     
     # To print the data checking messages on data input to STDOUT when load_data method is called set input_verbosity to 1.
     # To print a more detailed report to STDOUT when results method is called set output_verbosity to 1.
-    my $anc = Statistics::Distributions::Ancova->new ( { significance => 0.005, input_verbosity => 1, output_verbosity => 1 } );
+    my $anc = Statistics::Distributions::Ancova->new ( { 
+      significance => 0.005, input_verbosity => 1, output_verbosity => 1 
+      } );
 
-    # Example using k=3 groups our dependent variable of interest (Y) along with covariant data for the concomitant variable (X) used to adjust (Y) to eliminate obscuring
-    # effects of covariance.
+    # Example using k=3 groups our dependent variable of interest (Y) along with covariant data for the concomitant 
+    # variable (X) used to adjust (Y) to eliminate obscuring effects of covariance.
     my @Drug_A_Y =  ('29','27','31','33','32','24','16');
     my @Drug_A_X = ('53','64','55','67','55','45','35');
 
@@ -772,7 +774,8 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
     my @Drug_C_X = ('5','12','12','9','12','3','3');
     my @Drug_C_Y = ('12','21','26','17','25','9','12');
 
-    # Data is sent to object as nested HASH reference. The individual group names are option, but the variable names Y and X are compulsory.
+    # Data is sent to object as nested HASH reference. The individual group names are option, but the variable names Y 
+    # and X are compulsory.
     my $h_ref = { 'group_A' =>  {
                                     Y => \@Drug_A_Y,
                                     X => \@Drug_A_X,
@@ -793,14 +796,16 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
     # To clear the object use unload.
     $anc->unload;
     
-    # To reset the verbosity level use set_verbosity. Without a value both input and output verbosity default to 0 (no extended messages).
+    # To reset the verbosity level use set_verbosity. Without a value both input and output verbosity default to 0 (no 
+    # extended messages).
     #$anc->set_verbosity ( { input_verbosity => 1, output_verbosity => 1 } );
     $anc->set_verbosity ();
     
     # Reload data.
     $anc->load_data ( { data => $h_ref } );
 
-    # To reset significance level use set_significance. Without a value it defaults to p = 0.05 to change this use set_significance. 
+    # To reset significance level use set_significance. Without a value it defaults to p = 0.05 to change this use 
+    # set_significance. 
     #$anc->set_significance();
     $anc->set_significance( {significance => q{0.0005} } );
 
@@ -810,41 +815,46 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
     # To print a report to STDOUT call results in VOID context.
     $anc->results();
 
-    # Calling results method in BOOLEAN returns true or false depending on whether the obtained F score was significant at chosen p.
+    # Calling results method in BOOLEAN returns true or false depending on whether the obtained F score was significant 
+    # at chosen p.
     print qq{\nIt is significant.} if ($anc->results);    
 
     # Calling results method in STRING returns a string message about test result.
-    print qq{\n\nCall result in string returns a message : }, ''.$anc->results;         # in this case prints 'This value of F is significant at your chosen .05 level' 
+    print qq{\n\nCall result in string returns a message : }, ''.$anc->results;         
+        
+        # in this case prints 'This value of F is significant at your chosen .05 level' 
 
     # Calling results in LIST without arguments returns the full list of relevant values of F, p, df, MS...
     my %hash;
     print qq{\n\nCalling in LIST context without arguments:};
-    @hash{qw($F_score, $p_value, $MS_bg, $SS_bg_Adj, $df_bg_Y, $MS_wg, $SS_wg_Adj, $df_wg_Y_Adj, $SS_total_Adj)} = $anc->results();
+    @hash{qw($F_score, $p_value, $MS_bg, $SS_bg_Adj, $df_bg_Y, 
+      $MS_wg, $SS_wg_Adj, $df_wg_Y_Adj, $SS_total_Adj)} = $anc->results();
     for (keys %hash) { print qq{\n$_ = $hash{$_} } };
 
-    # Calling results in LIST with numbered arguments corresponding to those below returns those arguments in the order passed to the method.
+    # Calling results in LIST with numbered arguments corresponding to those below returns those arguments in the order 
+    # passed to the method.
     #      0         1        2        3          4         5        6            7              8      
     # ($F_score, $p_value, $MS_bg, $SS_bg_Adj, $df_bg_Y, $MS_wg, $SS_wg_Adj, $df_wg_Y_Adj, $SS_total_Adj) = $anc->results(2,3,5)   
-    print qq{\n\nCalling results in LIST context with numeric arguments returns selected values - the F value, p_value, MS_bg and MS_wg are: @{$anc->results(0,1,2,,5)}};
+    print qq{\n\nCalling in LIST context. The F value, p_value, MS_bg and MS_wg are: @{$anc->results(0,1,2,,5)}};
 
 =head1 DESCRIPTION
 
-    A perl implementation of One-Way Analysis of Covariance for Independent Samples. As with paired t-test and repeated-measures ANOVA this test
-    removes the obscuring effects of pre-existing individual differences among subjects. In cases where a substantial portion of the variability 
-    that occurs within each of the set of a dependent variable Y is actually covariance with another concomitant variable X measures, this test
-    removes the covariance with X from Y thus removing a portion of the irrelevant variability of individual differences. 
-    
-    See http://en.wikipedia.org/wiki/Analysis_of_covariance for more info.
+A perl implementation of One-Way Analysis of Covariance for Independent Samples. As with paired t-test and
+repeated-measures ANOVA this test removes the obscuring effects of pre-existing individual differences among subjects.
+In cases where a substantial portion of the variability that occurs within each of the set of a dependent variable Y is 
+actually covariance with another concomitant variable X measures, this test removes the covariance with X from Y thus 
+removing a portion of the irrelevant variability of individual differences. 
 
+See http://en.wikipedia.org/wiki/Analysis_of_covariance for more info.
 
 =head1 DEPENDENCIES
 
-    'Statistics::Distributions' => '1.02',
-    'Math::Cephes'              => '0.47', 
-    'Carp'                      => '1.08', 
-    'Perl6::Form'               => '0.04',
-    'Contextual::Return'        =>  '0.2.1',
-    'List::Util'                => '1.19', 
+'Statistics::Distributions' => '1.02',
+'Math::Cephes'              => '0.47', 
+'Carp'                      => '1.08', 
+'Perl6::Form'               => '0.04',
+'Contextual::Return'        => '0.2.1',
+'List::Util'                => '1.19', 
 
 =head1 AUTHOR
 
@@ -859,30 +869,30 @@ modify it under the same terms as Perl itself. See L<perlartistic>.
 
 =head1 SEE ALSO
 
-L<Statistics::Descriptive>, L<Statistics::Distributions>, L<Statistics::Distributions::Analyze>, L<Statistics::ANOVA>, 
+L<Statistics::Descriptive>, L<Statistics::Distributions>, L<Statistics::Distributions::Analyze>, L<Statistics::ANOVA>.
 
 
 =head1 DISCLAIMER OF WARRANTY
 
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-NECESSARY SERVICING, REPAIR, OR CORRECTION.
+because this software is licensed free of charge, there is no warranty
+for the software, to the extent permitted by applicable law. except when
+otherwise stated in writing the copyright holders and/or other parties
+provide the software "as is" without warranty of any kind, either
+expressed or implied, including, but not limited to, the implied
+warranties of merchantability and fitness for a particular purpose. the
+entire risk as to the quality and performance of the software is with
+you. should the software prove defective, you assume the cost of all
+necessary servicing, repair, or correction.
 
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
-LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
-OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
-THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
+in no event unless required by applicable law or agreed to in writing
+will any copyright holder, or any other party who may modify and/or
+redistribute the software as permitted by the above licence, be
+liable to you for damages, including any general, special, incidental,
+or consequential damages arising out of the use or inability to use
+the software (including but not limited to loss of data or data being
+rendered inaccurate or losses sustained by you or third parties or a
+failure of the software to operate with any other software), even if
+such holder or other party has been advised of the possibility of
+such damages.
 
 =cut

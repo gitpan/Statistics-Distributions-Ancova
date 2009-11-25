@@ -1,4 +1,4 @@
-Statistics-Distributions-Ancova version 0.03
+Statistics-Distributions-Ancova version 0.03.01
 
     A perl implementation of One-Way Analysis of Covariance for Independent Samples. As with paired t-test and repeated-measures ANOVA this test
     removes the obscuring effects of pre-existing individual differences among subjects. In cases where a substantial portion of the variability 
@@ -30,7 +30,7 @@ DEPENDENCIES
     'Math::Cephes'              => '0.47', 
     'Carp'                      => '1.08', 
     'Perl6::Form'               => '0.04',
-    'Contextual::Return'        =>  '0.2.1',
+    'Contextual::Return'        => '0.2.1',
     'List::Util'                => '1.19', 
 
 COPYRIGHT AND LICENCE
