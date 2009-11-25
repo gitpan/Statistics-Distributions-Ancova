@@ -12,7 +12,7 @@ use Statistics::Distributions qw( fprob fdistr);
 #use vars qw($VERSION);
 
 #use version; $VERSION = qv('0.0.3');
-our $VERSION = '0.03.01';
+our $VERSION = '0.031';
 
 sub new {
     #my ($class, $significance ) = @_;
@@ -745,7 +745,7 @@ Statistics::Distributions::Ancova - Perl implementation of One-Way Analysis of C
 
 =head1 VERSION
 
-This document describes Statistics::Distributions::Ancova version 0.03.01
+This document describes Statistics::Distributions::Ancova version 0.031
 
 =head1 SYNOPSIS
 
