@@ -12,7 +12,7 @@ use Statistics::Distributions qw( fprob fdistr);
 #use vars qw($VERSION);
 
 #use version; $VERSION = qv('0.0.3');
-our $VERSION = '0.02';
+our $VERSION = '0.0.3';
 
 sub new {
     #my ($class, $significance ) = @_;
@@ -534,10 +534,10 @@ sub results {
     #elsif ( $F > Statistics::Distributions::fdistr ($df_bg_Y,$df_wg_Y_Adj,0.05) ) { print qq{\n\nthis value of F is significant at the p=0.05 level} }
     #else { print qq{\n\nthis value of F is not significant } }
                                                                                                                                                         
-    my $choosen_p_val = $self->{significance};
-    my $standard_F = fdistr ($df_bg_Y,$df_wg_Y_Adj,$choosen_p_val);
+    my $chosen_p_val = $self->{significance};
+    my $standard_F = fdistr ($df_bg_Y,$df_wg_Y_Adj,$chosen_p_val);
 
-    my $message     =   $F > $standard_F                             ?   qq{This value of F is significant at youre choosen $choosen_p_val level. }
+    my $message     =   $F > $standard_F                             ?   qq{This value of F is significant at your chosen p = $chosen_p_val level. }
                     :   $F > fdistr ($df_bg_Y,$df_wg_Y_Adj,0.01)     ?   qq{This value of F is significant at the p = 0.01 level. }
                     :   $F > fdistr ($df_bg_Y,$df_wg_Y_Adj,0.05)     ?   qq{This value of F is significant at the p = 0.05 level. }
                     :                                                    qq{This is not a significant value of F. } # default behaviour
@@ -660,7 +660,7 @@ sub _print_form {
         qq{ ============================================================================= },
         qq{| Overview                                                                    |},
         qq{|-----------------------------------------------------------------------------|},
-        qq{| your choosen p value = {<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<} |},
+        qq{| your chosen p value = {<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<} |},
         $self->{significance},       
         qq{|-----------------------------------------------------------------------------|},
         qq{| standard F value for these df and p = {<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<} |},
@@ -761,7 +761,8 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
     # To print a more detailed report to STDOUT when results method is called set output_verbosity to 1.
     my $anc = Statistics::Distributions::Ancova->new ( { significance => 0.005, input_verbosity => 1, output_verbosity => 1 } );
 
-    # Example using k=3 groups our dependent variable of interest (Y) along with covariant data for the concomitant variable (X) used to adjust (Y) to eliminate obscuring effects of covariance.
+    # Example using k=3 groups our dependent variable of interest (Y) along with covariant data for the concomitant variable (X) used to adjust (Y) to eliminate obscuring
+    # effects of covariance.
     my @Drug_A_Y =  ('29','27','31','33','32','24','16');
     my @Drug_A_X = ('53','64','55','67','55','45','35');
 
@@ -839,26 +840,27 @@ This document describes Statistics::Distributions::Ancova version 0.0.1
 =head1 DEPENDENCIES
 
     'Statistics::Distributions' => '1.02',
-    'Math::Cephes' 				=> '0.47', 
-    'Carp'		 				=> '1.08', 
-    'Perl6::Form' 				=> '0.04',
-    'Contextual::Return'		=>  '0.2.1',
+    'Math::Cephes'              => '0.47', 
+    'Carp'                      => '1.08', 
+    'Perl6::Form'               => '0.04',
+    'Contextual::Return'        =>  '0.2.1',
     'List::Util'                => '1.19', 
 
 =head1 AUTHOR
 
-Daniel S. T. Hughes  <dsth@cpan.org>
+Daniel S. T. Hughes  C<< <dsth@cpan.org> >>.
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2009, Daniel S. T. Hughes C<< <dsth@cantab.net> >>. All rights reserved.
+Copyright (c) 2009, Daniel S. T. Hughes C<< <dsth@cpan.org> >>. All rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
 =head1 SEE ALSO
 
-L<Statistics::Descriptive>, L<Statistics::Distributions>
+L<Statistics::Descriptive>, L<Statistics::Distributions>, L<Statistics::Distributions::Analyze>, L<Statistics::ANOVA>, 
+
 
 =head1 DISCLAIMER OF WARRANTY
 
