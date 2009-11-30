@@ -3,6 +3,7 @@ Changes
 MANIFEST
 Makefile.PL
 README
-lib/Statistics/Distributions/Ancova.pm
+lib/Statistics/Distributions/GTest.pm
 t/00.load.t
+t/pod-coverage.t
 t/pod.t

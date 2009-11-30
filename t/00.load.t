@@ -1,7 +1,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-use_ok( 'Statistics::Distributions::Ancova' );
+use_ok( 'Statistics::Distributions::GTest' );
 }
 
-diag( "Testing Statistics::Distributions::Ancova $Statistics::Distributions::Ancova::VERSION" );
+diag( "Testing Statistics::Distributions::GTest $Statistics::Distributions::GTest::VERSION" );
