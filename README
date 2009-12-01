@@ -1,14 +1,11 @@
-Statistics-Distributions-GTest version 0.1.3
+Statistics-Distributions-Ancova version 0.32.0
 
-The G-test of independence is an alternative to the chi-square test of independence for testing for independence in
-contingency tables. G-tests are coming into increasing use and as with the chi-square test for independence the G-test
-for independence is used when you have two nominal variables each with two or more possible values. The null hypothesis
-is that the relative proportions of one variable are independent of the second variable. This module implements two two 
-equivalent, but marginally different approaches to calculate G scores (that described in 
-http://en.wikipedia.org/wiki/G-test and that used by http://udel.edu/~mcdonald/statgtestind.html). Benchmarking 
-indicates that first approach works about a third faster than the alternative. However, this difference 
-diminishes as the categories increase. See http://en.wikipedia.org/wiki/G-test and 
-http://udel.edu/~mcdonald/statgtestind.html.
+    A perl implementation of One-Way Analysis of Covariance for Independent Samples. As with paired t-test and repeated-measures ANOVA this test
+    removes the obscuring effects of pre-existing individual differences among subjects. In cases where a substantial portion of the variability 
+    that occurs within each of the set of a dependent variable Y is actually covariance with another concomitant variable X measures, this test
+    removes the covariance with X from Y thus removing a portion of the irrelevant variability of individual differences. 
+
+    See http://en.wikipedia.org/wiki/Analysis_of_covariance for more info.
 
 INSTALLATION
 
@@ -29,14 +26,13 @@ Alternatively, to install with Module::Build, you can use the following commands
 
 DEPENDENCIES
 
-'version'                   => 0,
-'Statistics::Distributions' => '1.02',
-'Math::Cephes'              => '0.47', 
-'Carp'                      => '1.08', 
-'Contextual::Return'        => '0.2.1',
-'List::Util'                => '1.19', 
-'Text::SimpleTable';        => '2.0',
-
+    'version'                   => 0, 
+    'Statistics::Distributions' => '1.02',
+    'Math::Cephes'              => '0.47', 
+    'Carp'                      => '1.08', 
+    'Perl6::Form'               => '0.04',
+    'Contextual::Return'        => '0.2.1',
+    'List::Util'                => '1.19', 
 
 COPYRIGHT AND LICENCE
 
