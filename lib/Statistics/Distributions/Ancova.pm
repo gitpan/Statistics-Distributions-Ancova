@@ -17,10 +17,10 @@ Statistics::Distributions::Ancova - Perl implementation of One-Way Analysis of C
 =cut
 =head1 VERSION
 
-This document describes Statistics::Distributions::Ancova version 0.32.1.
+This document describes Statistics::Distributions::Ancova version 0.32.2.
 
 =cut
-use version; our $VERSION = qv('0.32.1'); 
+use version; our $VERSION = qv('0.32.2'); 
 =head1 SYNOPSIS
 
     use Statistics::Distributions::Ancova;
